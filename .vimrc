@@ -396,7 +396,7 @@
     nmap <leader>f8 :set foldlevel=8<CR>
     nmap <leader>f9 :set foldlevel=9<CR>
 
-    "UPPERCASE and lowsercase conversion
+    "UPPERCASE and lowercase conversion
     nnoremap g^ gUiW
     nnoremap gv guiW
 
