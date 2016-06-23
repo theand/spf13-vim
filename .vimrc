@@ -45,6 +45,15 @@
 
     " Basics {
         set nocompatible        " Must be first line
+        set encoding=utf-8
+        set fenc=utf-8
+        set fencs=utf-8,cp949,euc-kr,iso-8859-1
+        set nobomb
+        set ffs=unix,dos,mac  " unix dos mac 줄 변경자 모두 다 읽을 수 있도록 합니다.
+
+        set visualbell
+        set noerrorbells
+
         if !WINDOWS()
             set shell=/bin/sh
         endif
@@ -54,6 +63,7 @@
         " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
         " across (heterogeneous) systems easier.
         if WINDOWS()
+          set langmenu=ko_KR.UTF-8
           set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
         endif
     " }
@@ -100,7 +110,7 @@
     " endif
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
-    set mouse=a                 " Automatically enable mouse usage
+    set mouse-=a                 " Automatically enable mouse usage #disable
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
 
@@ -126,7 +136,7 @@
     set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
     set virtualedit=onemore             " Allow for cursor beyond last character
     set history=1000                    " Store a ton of history (default is 20)
-    set spell                           " Spell checking on
+    "set spell                           " Spell checking on
     set hidden                          " Allow buffer switching without saving
     set iskeyword-=.                    " '.' is an end of word designator
     set iskeyword-=#                    " '#' is an end of word designator
@@ -199,6 +209,7 @@
         set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
         set showcmd                 " Show partial commands in status line and
                                     " Selected characters/lines in visual mode
+        set confirm
     endif
 
     if has('statusline')
@@ -221,6 +232,7 @@
     set showmatch                   " Show matching brackets/parenthesis
     set incsearch                   " Find as you type search
     set hlsearch                    " Highlight search terms
+    set scs " 똑똑한 대소문자 구별 기능 사용
     set winminheight=0              " Windows can be 0 line high
     set ignorecase                  " Case insensitive search
     set smartcase                   " Case sensitive when uc present
@@ -237,8 +249,10 @@
 
 " Formatting {
 
-    set nowrap                      " Do not wrap long lines
+    "set nowrap                      " Do not wrap long lines
+    "set cindent
     set autoindent                  " Indent at the same level of the previous line
+    set smartindent  "  좀 더 지능적인 들여쓰기를 사용
     set shiftwidth=4                " Use indents of 4 spaces
     set expandtab                   " Tabs are spaces, not tabs
     set tabstop=4                   " An indentation every four columns
@@ -824,7 +838,7 @@
                     " <CR> close popup and save indent or expand snippet
                     imap <expr> <CR> CleverCr()
                     " <C-h>, <BS>: close popup and delete backword char.
-                    inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+                    "inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
                     inoremap <expr><C-y> neocomplete#smart_close_popup()
                 endif
                 " <TAB>: completion.
@@ -1076,9 +1090,9 @@
             if LINUX() && has("gui_running")
                 set guifont=Andale\ Mono\ Regular\ 12,Menlo\ Regular\ 11,Consolas\ Regular\ 12,Courier\ New\ Regular\ 14
             elseif OSX() && has("gui_running")
-                set guifont=Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
+                set guifont=D2Coding:h14,Andale\ Mono\ Regular:h12,Menlo\ Regular:h11,Consolas\ Regular:h12,Courier\ New\ Regular:h14
             elseif WINDOWS() && has("gui_running")
-                set guifont=Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
+                set guifont=D2Coding:h14,Andale_Mono:h10,Menlo:h10,Consolas:h10,Courier_New:h10
             endif
         endif
     else
